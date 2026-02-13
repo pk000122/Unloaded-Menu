@@ -6,15 +6,14 @@ import App from './App.js';
 const html = htm.bind(React.createElement);
 const rootElement = document.getElementById('root');
 
-console.log('Nebula Games: Initializing entry point...');
-
 if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
+  console.error("Critical: Root element 'root' not found in HTML.");
+} else {
+  console.log("Nebula Games: App mounting...");
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(html`
+    <${React.StrictMode}>
+      <${App} />
+    <//>
+  `);
 }
-
-const root = ReactDOM.createRoot(rootElement);
-root.render(html`
-  <${React.StrictMode}>
-    <${App} />
-  <//>
-`);
